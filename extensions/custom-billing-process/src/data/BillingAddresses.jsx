@@ -580,7 +580,7 @@ export const clinicsDataInfusion = {
     "2005690-Bayshore Infusion Clinic Mississauga": {
       "No.": "2005690",
       Name: "Bayshore Infusion Clinic Mississauga",
-      "Phone No.": "905-277-3116 PRESS 2",
+      "Phone No.": "905-277-3116",
       City: "MISSISSAUGA",
       Province: "ON",
       "Postal Code": "L5B 4A2",
