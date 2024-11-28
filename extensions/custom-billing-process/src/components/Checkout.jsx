@@ -37,6 +37,7 @@ function Extension() {
   const [pssProgramList, setPssProgramList] = useState([]);
   const [hasInfusionClinicOrHomePharma, setHasInfusionClinicOrHomePharma] =
     useState(false);
+  const [hasMeds, setHasMeds] = useState(false);
   const [isOkToShowIcnHomePharmaBanner, setIsOkToShowIcnHomePharmaBanner] =
     useState(false);
 
@@ -58,6 +59,10 @@ function Extension() {
               attribute.value === "Management"
             ) {
               if (hasInfusionClinicOrHomePharma === false) {
+                if (line.merchandise.sku === "MED") {
+                  setHasMeds(true);
+                  setIsIcnChecked(true);
+                }
                 setHasInfusionClinicOrHomePharma(true);
                 setIsOkToShowIcnHomePharmaBanner(true);
               }
@@ -65,11 +70,11 @@ function Extension() {
               if (!programList.includes(attribute.value)) {
                 if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {
                   programList.push("Hemophilia");
-                }
-                else if (attribute.value === "opdivo-yervoy-regimen-and-opdualag") {
+                } else if (
+                  attribute.value === "opdivo-yervoy-regimen-and-opdualag"
+                ) {
                   programList.push("Access to Hope");
-                }
-                else {
+                } else {
                   programList.push(attribute.value);
                 }
               }
@@ -171,7 +176,7 @@ function Extension() {
       {(hasInfusionClinicOrHomePharma || isPssChecked) && (
         <>
           <Heading level={3}>Billing</Heading>
-          {hasInfusionClinicOrHomePharma && (
+          {hasInfusionClinicOrHomePharma && !hasMeds && (
             <View>
               <BlockSpacer spacing="base" />
               <InlineStack>
@@ -242,15 +247,23 @@ function Extension() {
               </Banner>
             </>
           )}
-          {!isHomePharmaChecked && hasInfusionClinicOrHomePharma && (
+          {hasMeds && (
             <>
               <BlockSpacer spacing="extraTight" />
               <Banner status="warning">
-                If you have selected the infusion clinic, the supplies can only
-                be sent to the clinic. Please do not modify the shipping
-                address, as failure to do so will result in order cancellation.
-                If you have any special requests, please enter your requests on
-                delivery instructions section for approval.
+                There is medicaiton in the order, order can only be shipped
+                to the clinic.
+              </Banner>
+            </>
+          )}
+          {isIcnChecked && hasInfusionClinicOrHomePharma && (
+            <>
+              <BlockSpacer spacing="extraTight" />
+              <Banner status="warning">
+                Supplies can only be sent to the clinic. Please do not modify
+                the shipping address, as failure to do so will result in order
+                cancellation. If you have any special requests, please enter
+                your requests on delivery instructions section for approval.
               </Banner>
             </>
           )}
@@ -321,7 +334,6 @@ function Extension() {
   }
 
   async function handlePatientIdInputChange(program, value) {
-    console.log(program, value)
     // 4. Call the API to modify checkout
     await applyAttributeChange({
       key: program.toUpperCase(),
