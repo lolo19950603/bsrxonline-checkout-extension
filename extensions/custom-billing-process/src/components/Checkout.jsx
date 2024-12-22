@@ -45,6 +45,11 @@ function Extension() {
   const cartLines = useCartLines();
   // Effect to check for "ICN/HOMEPHARMA" when the component is rendered
   useEffect(() => {
+    applyAttributeChange({
+      key: "ICN/HOME PHARMA Account",
+      type: "updateAttribute",
+      value: "",
+    });
     const programList = [];
     for (let i = 0; i < cartLines.length; i++) {
       const line = cartLines[i];
@@ -241,9 +246,7 @@ function Extension() {
               {/* Banner for infusion clinic/home pharma supplies */}
               <BlockSpacer spacing="tight" />
               <Banner status="critical">
-                Your cart has infusion clinic/home pharma supplies. Please
-                select appropriate billing; failure to do so will result in
-                order cancellation.
+                Please select appropriate billing.
               </Banner>
             </>
           )}
@@ -327,7 +330,7 @@ function Extension() {
 
   async function handleDeliveryInstructionsChange(value) {
     await applyAttributeChange({
-      key: "Delivery Instructions:",
+      key: "Delivery Instructions",
       type: "updateAttribute",
       value: value,
     });
@@ -350,6 +353,11 @@ function Extension() {
     } else {
       setSelectedProvince("");
       setIsOkToShowIcnHomePharmaBanner(false);
+      applyAttributeChange({
+        key: "ICN/HOME PHARMA Account",
+        type: "updateAttribute",
+        value: "",
+    });
     }
     setIsHomePharmaChecked(isChecked);
     setIsOkToShowIcnHomePharmaBanner(true);
@@ -362,6 +370,11 @@ function Extension() {
     } else {
       setSelectedProvince("");
       setIsOkToShowIcnHomePharmaBanner(false);
+      applyAttributeChange({
+        key: "ICN/HOME PHARMA Account",
+        type: "updateAttribute",
+        value: "",
+    });
     }
     setIsIcnChecked(isChecked);
     setIsOkToShowIcnHomePharmaBanner(true);
