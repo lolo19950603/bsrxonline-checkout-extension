@@ -40,15 +40,41 @@ function Extension() {
   const [hasMeds, setHasMeds] = useState(false);
   const [isOkToShowIcnHomePharmaBanner, setIsOkToShowIcnHomePharmaBanner] =
     useState(false);
-
+  const [patientIds, setPatientIds] = useState({});
   // Access cart lines using the useCartLines hook
   const cartLines = useCartLines();
   // Effect to check for "ICN/HOMEPHARMA" when the component is rendered
+
+  useEffect(() => {
+    // Check if all patient IDs are filled
+    const allFilled = pssProgramList.every(
+      (program) => patientIds[program] && patientIds[program].trim() !== ""
+    );
+    if (allFilled) {
+      applyAttributeChange({
+        key: "ALL PATIENT ID(s) FILLED",
+        type: "updateAttribute",
+        value: "yes",
+      });
+    } else {
+      applyAttributeChange({
+        key: "ALL PATIENT ID(s) FILLED",
+        type: "updateAttribute",
+        value: "no",
+      });
+    }
+  }, [patientIds]);
+
   useEffect(() => {
     applyAttributeChange({
       key: "ICN/HOME PHARMA Account",
       type: "updateAttribute",
       value: "",
+    });
+    applyAttributeChange({
+      key: "ALL PATIENT ID(s) FILLED",
+      type: "updateAttribute",
+      value: "no",
     });
     const programList = [];
     for (let i = 0; i < cartLines.length; i++) {
@@ -71,20 +97,20 @@ function Extension() {
                 setHasInfusionClinicOrHomePharma(true);
                 setIsOkToShowIcnHomePharmaBanner(true);
               }
-            } else {
-              if (!programList.includes(attribute.value)) {
-                if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {
-                  programList.push("Hemophilia");
-                } else if (
-                  attribute.value === "opdivo-yervoy-regimen-and-opdualag"
-                ) {
-                  programList.push("Access to Hope");
-                } else {
-                  programList.push(attribute.value);
-                }
-              }
-              setIsPssChecked(true);
             }
+          } else if (attribute.key === "pss"){
+            if (!programList.includes(attribute.value)) {
+              if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {
+                programList.push("Hemophilia");
+              } else if (
+                attribute.value === "opdivo-yervoy-regimen-and-opdualag"
+              ) {
+                programList.push("Access to Hope");
+              } else {
+                programList.push(attribute.value);
+              }
+            }
+            setIsPssChecked(true);
           }
         }
       }
@@ -97,6 +123,11 @@ function Extension() {
     setSelectedProvince(value);
     setSelectedClinic(""); // Reset clinic when province changes
     setIsOkToShowIcnHomePharmaBanner(true);
+    applyAttributeChange({
+      key: "ICN/HOME PHARMA Account",
+      type: "updateAttribute",
+      value: "",
+    });
   };
 
   // Function to handle clinic selection
@@ -245,9 +276,6 @@ function Extension() {
             <>
               {/* Banner for infusion clinic/home pharma supplies */}
               <BlockSpacer spacing="tight" />
-              <Banner status="critical">
-                Please select appropriate billing.
-              </Banner>
             </>
           )}
           {hasMeds && (
@@ -276,9 +304,6 @@ function Extension() {
               <BlockSpacer spacing="base" />
               <Heading level={4}>PSS</Heading>
               <BlockSpacer spacing="tight" />
-              <Banner status="info">
-                Please enter appropriate patient ID.
-              </Banner>
               {/* <BlockSpacer spacing="tight" /> */}
               {/* Dynamic Input Fields for PSS Programs */}
               <View>
@@ -298,7 +323,7 @@ function Extension() {
                       onChange={(value) =>
                         handlePatientIdInputChange(program, value)
                       }
-                      value=""
+                      value={patientIds[program] || ""}
                     />
                     <BlockSpacer spacing="extraTight" />
                   </View>
@@ -337,6 +362,10 @@ function Extension() {
   }
 
   async function handlePatientIdInputChange(program, value) {
+    setPatientIds((prevIds) => ({
+      ...prevIds,
+      [program]: value,
+    }));
     // 4. Call the API to modify checkout
     await applyAttributeChange({
       key: program.toUpperCase(),
@@ -353,14 +382,14 @@ function Extension() {
     } else {
       setSelectedProvince("");
       setIsOkToShowIcnHomePharmaBanner(false);
-      applyAttributeChange({
-        key: "ICN/HOME PHARMA Account",
-        type: "updateAttribute",
-        value: "",
-    });
     }
     setIsHomePharmaChecked(isChecked);
     setIsOkToShowIcnHomePharmaBanner(true);
+    applyAttributeChange({
+      key: "ICN/HOME PHARMA Account",
+      type: "updateAttribute",
+      value: "",
+    });
   }
 
   function handleIcnChange(isChecked) {
@@ -370,13 +399,13 @@ function Extension() {
     } else {
       setSelectedProvince("");
       setIsOkToShowIcnHomePharmaBanner(false);
-      applyAttributeChange({
-        key: "ICN/HOME PHARMA Account",
-        type: "updateAttribute",
-        value: "",
-    });
     }
     setIsIcnChecked(isChecked);
     setIsOkToShowIcnHomePharmaBanner(true);
+    applyAttributeChange({
+      key: "ICN/HOME PHARMA Account",
+      type: "updateAttribute",
+      value: "",
+    });
   }
 }
