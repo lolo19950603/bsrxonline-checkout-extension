@@ -77,6 +77,7 @@ function Extension() {
       value: "no",
     });
     const programList = [];
+    const needsPmApproval = [];
     for (let i = 0; i < cartLines.length; i++) {
       const line = cartLines[i];
 
@@ -99,16 +100,28 @@ function Extension() {
               }
             }
           } else if (attribute.key === "pss"){
-            if (!programList.includes(attribute.value)) {
-              if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {
-                programList.push("Hemophilia");
-              } else if (
-                attribute.value === "opdivo-yervoy-regimen-and-opdualag"
-              ) {
-                programList.push("Access to Hope");
-              } else {
-                programList.push(attribute.value);
+            if (line.merchandise.product.productType.toUpperCase() === "NEEDS PM APPROVAL") {
+              if (!needsPmApproval.includes(attribute.value)) {
+                needsPmApproval.push(attribute.value);
+                applyAttributeChange({
+                  key: attribute.value.toUpperCase() + " NEEDS PM APPROVAL",
+                  type: "updateAttribute",
+                  value: "",
+                });
               }
+            }
+            if (attribute.value === "tp-organon-renflexis") {
+              if (!needsPmApproval.includes(attribute.value)) {
+                needsPmApproval.push(attribute.value);
+                applyAttributeChange({
+                  key: "TP ORGANON RENFLEXIS NEEDS PM APPROVAL",
+                  type: "updateAttribute",
+                  value: "",
+                });
+              }
+            }
+            if (!programList.includes(attribute.value)) {
+              programList.push(attribute.value);
             }
             setIsPssChecked(true);
           }
