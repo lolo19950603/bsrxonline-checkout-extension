@@ -125,6 +125,11 @@ function Extension() {
                 programList.push("ACESS TO HOPE");
               }
             }
+            else if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {
+              if (!programList.includes("HEMOPHILIA")) {
+                programList.push("HEMOPHILIA");
+              }
+            }
             else if (!programList.includes(attribute.value)) {
               programList.push(attribute.value);
             }
