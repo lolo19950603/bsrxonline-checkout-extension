@@ -91,7 +91,7 @@ function Extension() {
               attribute.value === "Management"
             ) {
               if (hasInfusionClinicOrHomePharma === false) {
-                if (line.merchandise.sku === "MED") {
+                if (line.merchandise.sku.startsWith("MED")) {
                   setHasMeds(true);
                   setIsIcnChecked(true);
                 }
@@ -114,13 +114,18 @@ function Extension() {
               if (!needsPmApproval.includes(attribute.value)) {
                 needsPmApproval.push(attribute.value);
                 applyAttributeChange({
-                  key: "TP ORGANON RENFLEXIS NEEDS PM APPROVAL",
+                  key: "TP RENFLEXIS NEEDS PM APPROVAL",
                   type: "updateAttribute",
                   value: "",
                 });
               }
             }
-            if (!programList.includes(attribute.value)) {
+            if (attribute.value === "opdivo-yervoy-regimen-and-opdualag") {
+              if (!programList.includes("ACESS TO HOPE")) {
+                programList.push("ACESS TO HOPE");
+              }
+            }
+            else if (!programList.includes(attribute.value)) {
               programList.push(attribute.value);
             }
             setIsPssChecked(true);
