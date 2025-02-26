@@ -833,8 +833,8 @@ export const clinicsDataInfusion = {
       "Phone No.": "514-501-9197",
       City: "BROSSARD",
       Province: "QC",
-      "Postal Code": "J4Y 0E2",
-      Address: "510-9090-BOUL LEDUC",
+      "Postal Code": "J4Y 0S4",
+      Address: "1100 Rue Du Lux",
     },
     "1023783-Bayshore Infusion Clinic Chicoutimi": {
       "No.": "1023783",
