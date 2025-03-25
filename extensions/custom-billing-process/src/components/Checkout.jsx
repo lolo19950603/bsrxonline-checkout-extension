@@ -121,8 +121,8 @@ function Extension() {
               }
             }
             if (attribute.value === "opdivo-yervoy-regimen-and-opdualag") {
-              if (!programList.includes("ACESS TO HOPE")) {
-                programList.push("ACESS TO HOPE");
+              if (!programList.includes("ACCESS TO HOPE")) {
+                programList.push("ACCESS TO HOPE");
               }
             }
             else if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {

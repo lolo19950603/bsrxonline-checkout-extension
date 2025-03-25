@@ -256,8 +256,8 @@ export const clinicsDataInfusion = {
       "Phone No.": "250-870-2435",
       City: "NANAIMO",
       Province: "BC",
-      "Postal Code": "V9S 2L4",
-      Address: "204-1650 TERMINAL AVE N",
+      "Postal Code": "V9S 4V9",
+      Address: "104-1450 Waddington Rd",
     },
     "1001869-Bayshore Infusion Clinic New Westminster": {
       "No.": "1001869",
@@ -319,8 +319,8 @@ export const clinicsDataInfusion = {
       "Phone No.": "604-873-2545",
       City: "VANCOUVER",
       Province: "BC",
-      "Postal Code": "V5Z 3X7",
-      Address: "410-555 WEST 12TH AVE",
+      "Postal Code": "V5Z 1J1",
+      Address: "1116-750 West Broadway",
     },
     "1034625-Bayshore Infusion Clinic Vernon": {
       "No.": "1034625",
@@ -377,8 +377,8 @@ export const clinicsDataInfusion = {
       "Phone No.": "506-857-9992",
       City: "MONCTON",
       Province: "NB",
-      "Postal Code": "E1E 1G5",
-      Address: "106B-1600 MAIN ST",
+      "Postal Code": "E1C 2T3",
+      Address: "Suite 4-1116 Mountain Road",
     },
     "1108880-Bayshore Infusion Clinic Saint John NB": {
       "No.": "1108880",
