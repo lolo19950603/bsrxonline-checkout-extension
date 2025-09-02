@@ -271,11 +271,11 @@ export const clinicsDataInfusion = {
     "1015060-Bayshore Infusion Clinic North Vancouver": {
       "No.": "1015060",
       Name: "Bayshore Infusion Clinic North Vancouver",
-      "Phone No.": "604-770-4335",
+      "Phone No.": "604-987-1852",
       City: "NORTH VANCOUVER",
       Province: "BC",
-      "Postal Code": "V7L 0E5",
-      Address: "340-138E 13TH ST",
+      "Postal Code": "V7L 2P7",
+      Address: "106-135E 15TH ST",
     },
     "1047861-Bayshore Infusion Clinic Prince George": {
       "No.": "1047861",
