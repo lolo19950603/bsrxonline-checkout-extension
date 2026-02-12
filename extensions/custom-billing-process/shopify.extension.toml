@@ -3,11 +3,14 @@
 
 # The version of APIs your extension will receive. Learn more:
 # https://shopify.dev/docs/api/usage/versioning
-api_version = "2024-07"
+api_version = "2025-07"
 
 [[extensions]]
 name = "custom-billing-process"
 handle = "custom-billing-process"
+
+uid = "864b6d91-b28e-6724-cfb2-65bc9137fd8b5be7bf4b"
+
 type = "ui_extension"
 
 

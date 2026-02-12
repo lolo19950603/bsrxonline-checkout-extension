@@ -101,7 +101,17 @@ function Extension() {
             }
           } else if (attribute.key === "pss"){
             if (line.merchandise.product.productType.toUpperCase() === "NEEDS PM APPROVAL") {
-              if (!needsPmApproval.includes(attribute.value)) {
+              if (attribute.value === "sanofi-hemophilia-alprolix-eloctate") {
+                if (!needsPmApproval.includes("HEMOPHILIA")) {
+                  needsPmApproval.push(attribute.value);
+                  applyAttributeChange({
+                    key: "HEMOPHILIA NEEDS PM APPROVAL",
+                    type: "updateAttribute",
+                    value: "",
+                  });
+                }
+              }
+              else if (!needsPmApproval.includes(attribute.value)) {
                 needsPmApproval.push(attribute.value);
                 applyAttributeChange({
                   key: attribute.value.toUpperCase() + " NEEDS PM APPROVAL",
