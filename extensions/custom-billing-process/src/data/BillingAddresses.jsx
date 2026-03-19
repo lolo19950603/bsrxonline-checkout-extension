@@ -311,7 +311,7 @@ export const clinicsDataInfusion = {
       City: "SURREY",
       Province: "BC",
       "Postal Code": "V3V 1N1",
-      Address: "320-13710 94A AVE",
+      Address: "207-13710 94A AVE",
     },
     "2001674-Bayshore Infusion Clinic Vancouver": {
       "No.": "2001674",
