@@ -518,7 +518,7 @@ export const clinicsDataInfusion = {
     "2001510-Bayshore Infusion Clinic Hamilton": {
       "No.": "2001510",
       Name: "Bayshore Infusion Clinic Hamilton",
-      "Phone No.": "905-521-8411 Ext 230",
+      "Phone No.": "905-521-8411",
       City: "HAMILTON",
       Province: "ON",
       "Postal Code": "L9A 5H4",
