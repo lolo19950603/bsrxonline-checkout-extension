@@ -725,8 +725,8 @@ export const clinicsDataInfusion = {
       "Phone No.": "289-684-6048",
       City: "THUNDER BAY",
       Province: "ON",
-      "Postal Code": "P7B 0A1",
-      Address: "103-1260 GOLF LINKS RD",
+      "Postal Code": "P7A 4Z6",
+      Address: "320-63 N Algoma Street",
     },
     "1001819-Bayshore Infusion Clinic Timmins": {
       "No.": "1001819",
