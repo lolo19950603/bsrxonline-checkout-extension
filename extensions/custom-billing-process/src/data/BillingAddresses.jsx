@@ -448,7 +448,7 @@ export const clinicsDataInfusion = {
       City: "BARRIE",
       Province: "ON",
       "Postal Code": "L4N 6M2",
-      Address: "204C-480 Huronia Road",
+      Address: "202-480 Huronia Road",
     },
 
     "1063940-Bayshore Infusion Clinic Belleville": {
